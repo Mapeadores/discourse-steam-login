@@ -3,7 +3,7 @@
 class MigrateSteamAuthData < ActiveRecord::Migration[5.2]
   def up
     execute <<~SQL
-    REPLACE INTO user_associated_accounts (
+    INSERT INTO user_associated_accounts (
       provider_name,
       provider_uid,
       user_id,
@@ -16,7 +16,7 @@ class MigrateSteamAuthData < ActiveRecord::Migration[5.2]
       CURRENT_TIMESTAMP,
       CURRENT_TIMESTAMP
     FROM plugin_store_rows
-    WHERE plugin_name = 'steam_uid'
+    WHERE plugin_name = 'steam_uid' AND key != '76561197991814003'
     SQL
   end
 end
