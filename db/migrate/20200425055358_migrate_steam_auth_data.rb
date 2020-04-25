@@ -3,7 +3,7 @@
 class MigrateSteamAuthData < ActiveRecord::Migration[5.2]
   def up
     execute <<~SQL
-    INSERT INTO user_associated_accounts (
+    REPLACE INTO user_associated_accounts (
       provider_name,
       provider_uid,
       user_id,
