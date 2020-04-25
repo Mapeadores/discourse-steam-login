@@ -10,13 +10,13 @@ class MigrateSteamAuthData < ActiveRecord::Migration[5.2]
       created_at,
       updated_at
     ) SELECT
-      'steam_uid',
+      'steam',
       replace(key, 'steam_uid_', ''),
       (value::json->>'user_id')::integer,
       CURRENT_TIMESTAMP,
       CURRENT_TIMESTAMP
     FROM plugin_store_rows
-    WHERE plugin_name = 'steam'
+    WHERE plugin_name = 'steam_uid'
     SQL
   end
 end
